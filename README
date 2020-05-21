@@ -4,8 +4,6 @@ Introduction
 
 	injtrack_qsh is a POSIX-shell complient script intended for use on the AS/400's Qshell.
 	
-	
-	
 ------------
 Instructions
 ------------
@@ -15,6 +13,6 @@ Instructions
 	Permissions
 		chmod +x injtrack.qsh
 	Execute
-		./injtrack <order number> <PO number> <1st tracking number> [2nd-nth tracking numbers]
+		./injtrack.qsh <order number> <PO number> <1st tracking number> [2nd-nth tracking numbers]
 	View
 		Open order.html in a web browser
