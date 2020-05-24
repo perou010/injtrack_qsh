@@ -1,3 +1,5 @@
+# vim: filetype=sh
+
 if [ "$#" -lt 3 ]; then
 	echo "Expecting at least 3 arguments. Exiting..."
 	exit 1
@@ -14,18 +16,20 @@ if [ "$#" -eq 3 ]
 then plural="number is"
 fi
 
-header="<p>The following $carrier tracking $plural for Order #$1, PO $2</p>"
+header="The following $carrier tracking $plural for Order #$1, PO $2"
 
 s=""
+
 if [ "$carrier" == "UPS" ]
 then
-	sb="<li><a href=\"https://www.ups.com/mobile/track?trackingNumber="
+	sb="<li\>\<a href=\"https:\/\/www.ups.com\/mobile\/track?trackingNumber="
 elif [ "$carrier" == "FEDEX" ]
 then
-	sb="<li><a href=\"https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers="
+	sb="<li\>\<a href=\"https:\/\/www.fedex.com\/apps\/fedextrack\/?action=track&tracknumbers="
 fi
-sm="\">"
-se="</a></li>\n"
+
+sm="\"\>"
+se="\</a\>\</li\>\n"
 
 i=1
 for t in "$@"
@@ -37,4 +41,5 @@ do
 	i=$((i+1))
 done
 
-sed "/!--header--/ i $header" template.html | sed "/!--tracking_list--/ i $s" > order.html
+#sed "/!--header--/a $header" template.html | sed "/!--tracking_list--/a $s" > order.html
+cat template.html | sed  "s~!header~$header~" | sed "s~!tracking~$s~" > order.html
